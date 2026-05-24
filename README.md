@@ -2,6 +2,10 @@
 
 Analysis of 18 months of insurance claim data (Feb 2014 – Aug 2015) for AlphaCare Insurance Solutions.
 
+## Overview
+
+This project analyzes 18 months of car insurance data to identify low-risk segments, optimize pricing, and develop data-driven marketing strategies for AlphaCare Insurance Solutions in South Africa.
+
 ## Key Findings
 
 | Metric | Value |
@@ -39,6 +43,39 @@ Analysis of 18 months of insurance claim data (Feb 2014 – Aug 2015) for AlphaC
 
 
 **Result:** 988,797 rows retained (98.9% of original), 0 missing values
+```
+insurance-risk-analytics/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── data/                     # tracked by DVC
+├── notebooks/
+│   ├── 01_eda.ipynb
+
+├── src/
+│   ├── __init__.py
+│   ├── data_loader.py
+│   ├── eda_utils.py
+├── reports/
+│   └── final_report.md
+├── tests/
+├── .dvc/
+├── .gitignore
+├── dvc.yaml
+├── requirements.txt
+└── README.md
+```
+
+## Data Version Control (DVC)
+
+This project uses DVC to version datasets, ensuring reproducibility and auditability.
+
+### Data Versions
+
+| Version | File | Description |
+|---------|------|-------------|
+| v1 | `MachineLearningRating_v3.txt` | Raw insurance data (pipe-delimited) |
+| v2 | `insurance_data_cleaned.csv` | Cleaned data after EDA pipeline |
 
 ## Setup
 
@@ -57,5 +94,9 @@ pip install -r requirements.txt
 # Run tests
 pytest tests/ -v
 
+# Pull data from DVC remote
+dvc pull
+
 # Launch notebook
 jupyter notebook notebooks/01_eda.ipynb
+
