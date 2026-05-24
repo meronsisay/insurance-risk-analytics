@@ -9,3 +9,4 @@ notebook
 pytest
 dvc
 xgboost
+ipykernel
