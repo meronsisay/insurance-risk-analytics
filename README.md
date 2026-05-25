@@ -42,7 +42,7 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 
 **Result:** 988,797 rows retained (98.9% of original)
 
-## A/B Hypothesis Testing (Task 3)
+## A/B Hypothesis Testing
 
 ### Hypotheses Tested
 
@@ -75,6 +75,8 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 | Margin (numerical, zero-inflated) | Welch's t-test |
 
 ## Project Structure
+
+```
 insurance-risk-analytics/
 ├── .github/
 │   └── workflows/
