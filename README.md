@@ -4,7 +4,7 @@ Analysis of 18 months of insurance claim data (Feb 2014 – Aug 2015) for AlphaC
 
 ## Overview
 
-This project analyzes 18 months of car insurance data to identify low-risk segments, optimize pricing, and develop data-driven marketing strategies for AlphaCare Insurance Solutions in South Africa.
+This project analyzes 18 months of car insurance data to identify low-risk segments, optimize pricing, and develop data-driven marketing strategies.
 
 ## Key Findings
 
@@ -28,21 +28,55 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 - **Highest risk model:** TOYOTA QUANTUM 2.7 SESFIKILE 16s (R11.5M)
 
 ### Temporal Trends
-- Claims first appeared in November 2013
 - Loss ratio increased from 0% to 14.02% over 18 months
 
 ## Data Cleaning
 
-| Issue | Handling Method |
-|-------|-----------------|
+| Issue | Handling |
+|-------|----------|
 | Negative premiums/claims | Removed rows |
 | Missing >60% | Dropped column |
-| Missing 1-30% (numerical) | Filled with median |
-| Missing 1-30% (categorical) | Filled with mode |
+| Missing 1-30% (numerical) | Median imputation |
+| Missing 1-30% (categorical) | Mode imputation |
 | Missing <1% | Dropped rows |
 
+**Result:** 988,797 rows retained (98.9% of original)
 
-**Result:** 988,797 rows retained (98.9% of original), 0 missing values
+## A/B Hypothesis Testing
+
+### Hypotheses Tested
+
+| Hypothesis | KPI | Test | P-value | Decision |
+|------------|-----|------|---------|----------|
+| Province risk differences | Claim Frequency | Chi-squared | 0.0088 | **Reject H₀** |
+| Province risk differences | Claim Severity | Mann-Whitney U | 0.6696 | Fail to reject |
+| Zip code risk differences | Claim Frequency | Chi-squared | 0.6905 | Fail to reject |
+| Zip code margin differences | Margin | Welch's t-test | 0.5924 | Fail to reject |
+| Gender risk differences | Claim Frequency | Chi-squared | 0.5605 | Fail to reject |
+| Gender risk differences | Claim Severity | Mann-Whitney U | 0.1287 | Fail to reject |
+
+### Key Conclusions
+
+**Reject H₀ for Province Claim Frequency (p = 0.0088)**
+- Gauteng claim rate: 0.3189%
+- Northern Cape claim rate: 0.1254%
+- **Recommendation:** Increase Gauteng premiums 150-200%
+
+**Fail to reject for all other hypotheses**
+- No evidence for zip code-based pricing
+- No evidence for gender-based pricing (male 0.2599% vs female 0.2085%, p = 0.5605)
+- Gender analysis used Title imputation (Mr→Male, Mrs/Ms/Miss→Female) with 120,798 male and 5,275 female policies
+
+### Statistical Methods
+
+| KPI Type | Test Used |
+|----------|-----------|
+| Claim Frequency (categorical) | Chi-squared / Fisher's Exact |
+| Claim Severity (numerical) | Mann-Whitney U |
+| Margin (numerical, zero-inflated) | Welch's t-test |
+
+## Project Structure
+
 ```
 insurance-risk-analytics/
 ├── .github/
@@ -97,6 +131,5 @@ pytest tests/ -v
 # Pull data from DVC remote
 dvc pull
 
-# Launch notebook
-jupyter notebook notebooks/01_eda.ipynb
+
 
