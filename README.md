@@ -52,8 +52,8 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 | Province risk differences | Claim Severity | Mann-Whitney U | 0.6696 | Fail to reject |
 | Zip code risk differences | Claim Frequency | Chi-squared | 0.6905 | Fail to reject |
 | Zip code margin differences | Margin | Welch's t-test | 0.5924 | Fail to reject |
-| Gender risk differences | Claim Frequency | Fisher's Exact | 0.4289 | Fail to reject |
-| Gender risk differences | Claim Severity | Mann-Whitney U | 0.2861 | Fail to reject |
+| Gender risk differences | Claim Frequency | Chi-squared | 0.5605 | Fail to reject |
+| Gender risk differences | Claim Severity | Mann-Whitney U | 0.1287 | Fail to reject |
 
 ### Key Conclusions
 
@@ -63,8 +63,9 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 - **Recommendation:** Increase Gauteng premiums 150-200%
 
 **Fail to reject for all other hypotheses**
-- No evidence for zip code or gender-based pricing
-- Gender analysis limited (only 5% of records have specified gender)
+- No evidence for zip code-based pricing
+- No evidence for gender-based pricing (male 0.2599% vs female 0.2085%, p = 0.5605)
+- Gender analysis used Title imputation (Mr→Male, Mrs/Ms/Miss→Female) with 120,798 male and 5,275 female policies
 
 ### Statistical Methods
 
