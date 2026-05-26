@@ -80,6 +80,7 @@ class HypothesisTests:
             "decision": decision,
             "significant": p_value < 0.05,
         }
+
     @staticmethod
     def impute_gender_from_title(df):
         """
@@ -87,12 +88,17 @@ class HypothesisTests:
         Mr → Male, Mrs/Ms/Miss → Female. Excludes Dr and unmapped titles.
         """
         df = df.copy()
-        title_to_gender = {'Mr': 'Male', 'Mrs': 'Female', 'Ms': 'Female', 'Miss': 'Female'}
-        
-        df['Gender_final'] = df['Gender'].replace('Not specified', np.nan)
-        df['Gender_final'] = df['Gender_final'].fillna(df['Title'].map(title_to_gender))
-        
-        return df[df['Gender_final'].isin(['Male', 'Female'])]
+        title_to_gender = {
+            "Mr": "Male",
+            "Mrs": "Female",
+            "Ms": "Female",
+            "Miss": "Female",
+        }
+
+        df["Gender_final"] = df["Gender"].replace("Not specified", np.nan)
+        df["Gender_final"] = df["Gender_final"].fillna(df["Title"].map(title_to_gender))
+
+        return df[df["Gender_final"].isin(["Male", "Female"])]
 
     @staticmethod
     def test_categorical_kpi(contingency_table, kpi_name="Claim Frequency"):
