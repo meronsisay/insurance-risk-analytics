@@ -10,3 +10,4 @@ pytest
 dvc
 xgboost
 ipykernel
+shap
