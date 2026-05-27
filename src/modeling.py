@@ -55,7 +55,7 @@ class ModelingData:
         for col in num_cols:
             if df[col].isnull().sum() > 0:
                 df[col] = df[col].fillna(df[col].median())
-        cat_cols = df.select_dtypes(include=["object"]).columns
+        cat_cols = df.select_dtypes(include=["object", "string"]).columns
         for col in cat_cols:
             if df[col].isnull().sum() > 0:
                 df[col] = df[col].fillna("Not Specified")
@@ -91,7 +91,7 @@ class ModelingData:
     @staticmethod
     def get_column_types(X):
         """Identify numerical and categorical columns."""
-        categorical_cols = X.select_dtypes(include=["object", "category"]).columns.tolist()
+        categorical_cols = X.select_dtypes(include=["object", "string", "category"]).columns.tolist()
         numerical_cols = X.select_dtypes(include=["int64", "float64"]).columns.tolist()
         return numerical_cols, categorical_cols
 
