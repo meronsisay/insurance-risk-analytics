@@ -75,6 +75,48 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 | Claim Severity (numerical) | Mann-Whitney U |
 | Margin (numerical, zero-inflated) | Welch's t-test |
 
+## Predictive Modeling (Task 4)
+
+### Severity Models (Claim Amount Prediction)
+
+| Model | RMSE | R² |
+|-------|------|-----|
+| **Random Forest** | R29,770 | **0.317** |
+| Linear Regression (Ridge) | R30,208 | 0.297 |
+| XGBoost | R30,757 | 0.271 |
+
+**Best Model:** Random Forest (R² = 0.317)
+
+### Classification Models (Claim Probability)
+
+| Model | AUC-ROC | Recall |
+|-------|---------|--------|
+| Random Forest Classifier | 0.885 | 95.9% |
+| XGBoost Classifier | 0.887 | 95.0% |
+
+### Top Risk Drivers
+
+| Feature | Importance | Business Impact |
+|---------|------------|-----------------|
+| ExcessSelected | 35% | Lower excess = more claims |
+| CoverType | 17% | Coverage type matters |
+| CoverCategory | 16% | Category affects frequency |
+| SumInsured | 14% | Higher coverage = higher risk |
+
+### Risk-Based Pricing
+
+| Component | Value |
+|-----------|-------|
+| Claim Probability | 0.26% (historical) |
+| Predicted Severity | R21,870 |
+| **Recommended Premium** | **R75.13** |
+| Current Premium | R115.43 |
+| **Difference** | **-R40.30 (-35%)** |
+
+### Business Recommendation
+
+**Reduce premiums by 35%** from R115.43 to R75.13 for low-risk policies. Expected outcome: 30-40% increase in market share while maintaining profitability.
+
 ## Project Structure
 
 ```
