@@ -117,6 +117,15 @@ This project analyzes 18 months of car insurance data to identify low-risk segme
 
 **Reduce premiums by 35%** from R115.43 to R75.13 for low-risk policies. Expected outcome: 30-40% increase in market share while maintaining profitability.
 
+## Limitations
+
+### Data Limitations
+- **Time period:** Only 18 months of data (Feb 2014 – Aug 2015) may not capture long-term trends or seasonal patterns
+- **Low claim volume:** Only 0.26% of policies had claims (2,613 out of 988,797), limiting statistical power for some analyses
+- **Missing data:** Several columns had >60% missing values and were dropped entirely
+- **Single provider:** Data reflects only AlphaCare Insurance Solutions, limiting generalizability
+
+
 ## Project Structure
 
 ```
